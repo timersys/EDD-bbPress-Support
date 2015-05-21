@@ -712,7 +712,7 @@ function edd_bbp_send_priority_to_slack( $topic_id = 0, $forum_id = 0, $anonymou
 
 	wp_remote_post( 'https://hooks.slack.com/services/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', $args );
 }
-add_action( 'bbp_new_topic', 'edd_bbp_send_priority_to_slack', 10, 4 );
+#add_action( 'bbp_new_topic', 'edd_bbp_send_priority_to_slack', 10, 4 );
 
 
 /**
@@ -728,7 +728,7 @@ function edd_bbp_connect_forum_to_docs() {
         'to' => 'docs'
     ) );
 }
-add_action( 'p2p_init', 'edd_bbp_connect_forum_to_docs' );
+#add_action( 'p2p_init', 'edd_bbp_connect_forum_to_docs' );
 
 
 /**
@@ -771,8 +771,8 @@ function edd_bbp_display_connected_docs() {
 
     endif;
 }
-add_action( 'bbp_template_before_single_forum', 'edd_bbp_display_connected_docs' );
-add_action( 'edd_bbp_sidebar', 'edd_bbp_display_connected_docs' );
+#add_action( 'bbp_template_before_single_forum', 'edd_bbp_display_connected_docs' );
+#add_action( 'edd_bbp_sidebar', 'edd_bbp_display_connected_docs' );
 
 /**
  * Find all tickets that are 10 days old, close them, and send notices to the customer
@@ -814,7 +814,7 @@ function edd_bbp_close_old_tickets_and_notify() {
 	if( $tickets ) {
 
 		$emails = EDD()->emails;
-		$emails->__set( 'from_address', 'no-reply@easydigitaldownloads.com' );
+		$emails->__set( 'from_address', 'no-reply@timersys.com' );
 		$emails->heading = 'Support Alert';
 
 		$headers = $emails->get_headers();
@@ -832,7 +832,7 @@ function edd_bbp_close_old_tickets_and_notify() {
 			$to[] = $author_email;
 
 			$message  = "Hello {$author_name},\n\n";
-			$message .= "This email is to alert you that your ticket titled {$ticket->post_title} at https://easydigitaldownloads.com has been automatically closed due to inactivity.\n\n";
+			$message .= "This email is to alert you that your ticket titled {$ticket->post_title} at https://wp.timersys.com has been automatically closed due to inactivity.\n\n";
 			$message .= "If you believe this is in error or you are still needing assistance with this issue, simply reply to the ticket again and let us know: \n\n";
 			$message .= "Ticket URL: {$url}";
 
@@ -960,7 +960,7 @@ function edd_bbp_common_issues() {
 	</div>
 <?php
 }
-add_action( 'bbp_theme_before_topic_form_notices', 'edd_bbp_common_issues' );
+#add_action( 'bbp_theme_before_topic_form_notices', 'edd_bbp_common_issues' );
 
 /**
  * Store docs were helpful selection
@@ -982,7 +982,7 @@ function edd_bbp_store_docs_helpful_selection( $topic_id = 0, $forum_id = 0, $an
 	add_post_meta( $topic_id, '_edd_bbp_docs_helpful', $helpful );
 
 }
-add_action( 'bbp_new_topic', 'edd_bbp_store_docs_helpful_selection', 20, 4 );
+#add_action( 'bbp_new_topic', 'edd_bbp_store_docs_helpful_selection', 20, 4 );
 
 function edd_bbp_show_docs_helpful_selection() {
 
@@ -1012,7 +1012,7 @@ function edd_bbp_show_docs_helpful_selection() {
 <?php
 	$edd_bbp_doc_notice = true;
 }
-add_action( 'bbp_theme_after_reply_content', 'edd_bbp_show_docs_helpful_selection' );
+#add_action( 'bbp_theme_after_reply_content', 'edd_bbp_show_docs_helpful_selection' );
 
 /**
  * Send a Pushover Notification when a moderator is assigned to a topic
@@ -1048,4 +1048,4 @@ function edd_bbp_send_pushover_notification_on_assignment() {
 		}
 	}
 }
-add_action( 'init', 'edd_bbp_send_pushover_notification_on_assignment' );
+#add_action( 'init', 'edd_bbp_send_pushover_notification_on_assignment' );
